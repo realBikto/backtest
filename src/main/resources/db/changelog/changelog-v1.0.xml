@@ -1,0 +1,47 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1652215401359-1" author="Víctor HM">
+        <createTable tableName="movie">
+            <column name="movieid" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="originaltitle" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="year" type="varchar(10)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="languages" type="integer[]">
+                <constraints nullable="true"/>
+            </column>
+            <column name="genres" type="integer[]">
+                <constraints nullable="true"/>
+            </column>
+            <column name="directors" type="varchar(200)[]">
+                <constraints nullable="true"/>
+            </column>
+            <column name="actors" type="varchar(200)[]">
+                <constraints nullable="true"/>
+            </column>
+            <column name="image" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="createdby" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdat" type="java.sql.Types.TIMESTAMP_WITH_TIMEZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifiedby" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifiedat" type="java.sql.Types.TIMESTAMP_WITH_TIMEZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
