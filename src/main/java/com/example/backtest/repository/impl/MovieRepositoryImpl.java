@@ -28,12 +28,16 @@ public class MovieRepositoryImpl implements MovieRepository {
     @Override
     public boolean save(MovieModel movie){
         try {
-            String sql = String.format("insert into public.movie (title, originaltitle, year, languages," +
-                            " genres, directors, actors, image, createdby, createdat, modifiedby, modifiedat)" +
-                            " values ('%s','%s','%s', languages, genres, directors, actors, '%s','%s',now(),'%s',now());",
-                    movie.getTitle(), movie.getOriginaltitle(), movie.getYear(), movie.getLanguages(),
-                    movie.getGenres(), movie.getDirectors(), movie.getActors(), movie.getImage(),
-                    movie.getCreatedby(), movie.getModifiedby());
+            String sql = String.format("insert into public.movie (title, originaltitle, year," +
+//                            " languages, genres, directors, actors," +
+                            " image, createdby, createdat, modifiedby, modifiedat)" +
+                            " values ('%s','%s','%s'," +
+//                            " languages, genres, directors, actors," +
+                            " '%s','%s',now(),'%s',now());",
+                    movie.getTitle(), movie.getOriginaltitle(), movie.getYear(),
+//                    movie.getLanguages(), movie.getGenres(),
+//                    movie.getDirectors(), movie.getActors(),
+                    movie.getImage(), movie.getCreatedby(), movie.getModifiedby());
             jdbcTemplate.execute(sql);
             return true;
         } catch (Exception e) {
@@ -45,10 +49,12 @@ public class MovieRepositoryImpl implements MovieRepository {
     public boolean update(int movieid, MovieModel movie) {
         if (movieid > 0) {
             String sql = String.format("update public.movie set title = '%s', originaltitle = '%s', year = '%s'," +
-                            " languages = '', genres = '', directors = '', actors = '', image = '%s', modifiedby = '%s'" +
+//                            " languages = '', genres = '', directors = '', actors = ''," +
+                            " image = '%s', modifiedby = '%s'" +
                             ", modifiedat = now() where movieid = %d;",
-                    movie.getTitle(), movie.getOriginaltitle(), movie.getYear(), movie.getLanguages(), movie.getGenres(),
-                    movie.getDirectors(), movie.getActors(), movie.getImage(), movie.getModifiedby(), movieid);
+                    movie.getTitle(), movie.getOriginaltitle(), movie.getYear(),
+//                    movie.getLanguages(), movie.getGenres(), movie.getDirectors(), movie.getActors(),
+                    movie.getImage(), movie.getModifiedby(), movieid);
             jdbcTemplate.execute(sql);
             return true;
         }

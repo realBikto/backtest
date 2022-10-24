@@ -9,10 +9,10 @@ public class MovieModel {
     private String title;
     private String originaltitle;
     private String year;
-    private Integer[] languages;
-    private Integer[] genres;
-    private List<String> directors;
-    private List<String> actors;
+//    private Integer[] languages;
+//    private Integer[] genres;
+//    private List<String> directors;
+//    private List<String> actors;
     private String image;
     private String createdby;
     private Date createdat;
@@ -53,37 +53,37 @@ public class MovieModel {
         this.year = year;
     }
 
-    public Integer[] getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(Integer[] languages) {
-        this.languages = languages;
-    }
-
-    public Integer[] getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Integer[] genres) {
-        this.genres = genres;
-    }
-
-    public List<String> getDirectors() {
-        return directors;
-    }
-
-    public void setDirectors(List<String> directors) {
-        this.directors = directors;
-    }
-
-    public List<String> getActors() {
-        return actors;
-    }
-
-    public void setActors(List<String> actors) {
-        this.actors = actors;
-    }
+//    public Integer[] getLanguages() {
+//        return languages;
+//    }
+//
+//    public void setLanguages(Integer[] languages) {
+//        this.languages = languages;
+//    }
+//
+//    public Integer[] getGenres() {
+//        return genres;
+//    }
+//
+//    public void setGenres(Integer[] genres) {
+//        this.genres = genres;
+//    }
+//
+//    public List<String> getDirectors() {
+//        return directors;
+//    }
+//
+//    public void setDirectors(List<String> directors) {
+//        this.directors = directors;
+//    }
+//
+//    public List<String> getActors() {
+//        return actors;
+//    }
+//
+//    public void setActors(List<String> actors) {
+//        this.actors = actors;
+//    }
 
     public String getImage() {
         return image;

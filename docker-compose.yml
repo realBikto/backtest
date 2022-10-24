@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  application-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Temporal1234
+      POSTGRES_DB: "postgres"
+  application:
+    image: backtest:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - application-db
