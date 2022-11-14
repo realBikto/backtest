@@ -6,6 +6,8 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="changelog-v1.0.xml" relativeToChangelogFile="true"/>
+    <include file="language-data.xml" relativeToChangelogFile="true"/>
+    <include file="genre-data.xml" relativeToChangelogFile="true"/>
     <include file="movie-data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

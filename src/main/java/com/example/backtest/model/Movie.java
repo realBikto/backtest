@@ -1,24 +1,49 @@
 package com.example.backtest.model;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class MovieModel {
+@Entity
+@Table(name = "movie")
+@TypeDef(
+        name = "list-array",
+        typeClass = ListArrayType.class
+)
+public class Movie implements Serializable {
 
+    private static final long serialVersionUID = -3101069763826407823L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movieid;
     private String title;
     private String originaltitle;
     private String year;
-//    private Integer[] languages;
-//    private Integer[] genres;
-//    private List<String> directors;
-//    private List<String> actors;
+    @ManyToOne
+    @JoinColumn(name = "languageid")
+    private Language language;
+    @ManyToOne
+    @JoinColumn(name = "genreid")
+    private Genre genre;
+    private String director;
+    @Type(type = "list-array")
+    @Column(columnDefinition = "list-array")
+    private List<String> actors;
     private String image;
     private String createdby;
+    @CreationTimestamp
     private Date createdat;
     private String modifiedby;
+    @UpdateTimestamp
     private Date modifiedat;
-
 
     //Getters and setters
     public Long getMovieid() {
@@ -53,37 +78,37 @@ public class MovieModel {
         this.year = year;
     }
 
-//    public Integer[] getLanguages() {
-//        return languages;
-//    }
-//
-//    public void setLanguages(Integer[] languages) {
-//        this.languages = languages;
-//    }
-//
-//    public Integer[] getGenres() {
-//        return genres;
-//    }
-//
-//    public void setGenres(Integer[] genres) {
-//        this.genres = genres;
-//    }
-//
-//    public List<String> getDirectors() {
-//        return directors;
-//    }
-//
-//    public void setDirectors(List<String> directors) {
-//        this.directors = directors;
-//    }
-//
-//    public List<String> getActors() {
-//        return actors;
-//    }
-//
-//    public void setActors(List<String> actors) {
-//        this.actors = actors;
-//    }
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public List<String> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<String> actors) {
+        this.actors = actors;
+    }
 
     public String getImage() {
         return image;

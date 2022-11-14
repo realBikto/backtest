@@ -4,7 +4,29 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="CREATE_TABLE" author="Víctor HM">
+    <changeSet id="CREATE_TABLE_LANGUAGE" author="Víctor HM">
+        <createTable tableName="language">
+            <column name="languageid" autoIncrement="true" type="int">
+                <constraints primaryKey="true" primaryKeyName="pk_languageid"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_language_name"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CREATE_TABLE_GENRE" author="Víctor HM">
+        <createTable tableName="genre">
+            <column name="genreid" autoIncrement="true" type="int">
+                <constraints primaryKey="true" primaryKeyName="pk_genreid"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_genre_name"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CREATE_TABLE_MOVIE" author="Víctor HM">
         <createTable tableName="movie">
             <column name="movieid" autoIncrement="true" type="int">
                 <constraints primaryKey="true" primaryKeyName="pk_movieid"/>
@@ -18,28 +40,28 @@
             <column name="year" type="varchar(10)">
                 <constraints nullable="true"/>
             </column>
-<!--            <column name="languages" type="integer[]">-->
-<!--                <constraints nullable="true"/>-->
-<!--            </column>-->
-<!--            <column name="genres" type="integer[]">-->
-<!--                <constraints nullable="true"/>-->
-<!--            </column>-->
-<!--            <column name="directors" type="varchar(200)[]">-->
-<!--                <constraints nullable="true"/>-->
-<!--            </column>-->
-<!--            <column name="actors" type="varchar(200)[]">-->
-<!--                <constraints nullable="true"/>-->
-<!--            </column>-->
+            <column name="languageid" type="integer">
+                <constraints foreignKeyName="fk_movie_languageid" nullable="true" referencedColumnNames="languageid" referencedTableName="language"/>
+            </column>
+            <column name="genreid" type="integer">
+                <constraints foreignKeyName="fk_movie_genreid" nullable="true" referencedColumnNames="genreid" referencedTableName="genre"/>
+            </column>
+            <column name="director" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="actors" type="varchar(255) []">
+                <constraints nullable="true"/>
+            </column>
             <column name="image" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
-            <column name="createdby" type="varchar(255)">
+            <column name="createdby" type="varchar(255)" defaultValue="admin">
                 <constraints nullable="false"/>
             </column>
             <column name="createdat" type="java.sql.Types.TIMESTAMP_WITH_TIMEZONE">
                 <constraints nullable="false"/>
             </column>
-            <column name="modifiedby" type="varchar(255)">
+            <column name="modifiedby" type="varchar(255)" defaultValue="admin">
                 <constraints nullable="false"/>
             </column>
             <column name="modifiedat" type="java.sql.Types.TIMESTAMP_WITH_TIMEZONE">

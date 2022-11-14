@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert_genre_1" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Action');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Action"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_2" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Adventure');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Adventure"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_3" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Animated');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Animated"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_4" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Comedy');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Comedy"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_5" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Drama');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Drama"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_6" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Fantasy');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Fantasy"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_7" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Historical');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Historical"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_8" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Horror');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Horror"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_9" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Sciencefiction');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Sciencefiction"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_10" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Thriller');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Thriller"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_genre_11" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM genre WHERE name = 'Western');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="genre">
+            <column name="name" value="Western"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

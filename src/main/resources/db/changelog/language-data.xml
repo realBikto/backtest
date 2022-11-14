@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert_language_1" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'Spanish');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="Spanish"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_2" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'English');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="English"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_3" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'Catalan');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="Catalan"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_4" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'French');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="French"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_5" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'Portuguese');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="Portuguese"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_6" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'Italian');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="Italian"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert_language_7" author="Víctor HM">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM language WHERE name = 'German');</sqlCheck>
+        </preConditions>
+
+        <insert tableName="language">
+            <column name="name" value="German"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

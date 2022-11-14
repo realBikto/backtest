@@ -2,6 +2,8 @@ version: "3.7"
 services:
   application-db:
     image: postgres:latest
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Temporal1234

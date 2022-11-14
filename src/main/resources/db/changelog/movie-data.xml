@@ -9,86 +9,104 @@
             <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM movie WHERE title = 'Cadena perpetua');</sqlCheck>
         </preConditions>
 
-        <sql dbms="postgresql">
-            INSERT INTO public.movie (title, originaltitle, year, image,
---                                       languages,genres,directors,actors,
-                                      createdby, createdat, modifiedby, modifiedat)
-            VALUES ('Cadena perpetua', 'The Shawshank Redemption', '1994',
-                    'https://pics.filmaffinity.com/Cadena_perpetua-211849172-large.jpg',
-                    'system', now(), 'system', now());
-        </sql>
+        <insert tableName="movie">
+            <column name="title" value="Cadena perpetua"/>
+            <column name="originaltitle" value="The Shawshank Redemption"/>
+            <column name="year" value="1994"/>
+            <column name="image" value="https://pics.filmaffinity.com/Cadena_perpetua-211849172-large.jpg"/>
+            <column name="languageid" value="1"/>
+            <column name="genreid" value="5"/>
+            <column name="director" value="Frank Darabont"/>
+            <column name="actors" value="{Tim Robbins,Morgan Freeman,Bob Gunton}"/>
+            <column name="createdby" value="system"/>
+            <column name="createdat" value="now()"/>
+            <column name="modifiedby" value="system"/>
+            <column name="modifiedat" value="now()"/>
+        </insert>
     </changeSet>
 
     <changeSet id="insert_movie_2" author="Víctor HM">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM movie WHERE title = 'El padrino');</sqlCheck>
         </preConditions>
-<!--&lt;!&ndash;            <column name="languages">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="genres">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="directors">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="actors">true</column>&ndash;&gt;-->
-        <sql dbms="postgresql">
-            INSERT INTO public.movie (title, originaltitle, year, image,
---                                       languages,genres,directors,actors,
-                                      createdby, createdat, modifiedby, modifiedat)
-            VALUES ('El padrino', 'The Godfather', '1972',
-                    'https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7d2081c07a6afa338191e68c73e1959f7761b53cf9b691d59926aa0ef89874e5._RI_V_TTW_.jpg',
-                    'system', now(), 'system', now());
-        </sql>
+
+        <insert tableName="movie">
+            <column name="title" value="El padrino"/>
+            <column name="originaltitle" value="The Godfather"/>
+            <column name="year" value="1972"/>
+            <column name="image" value="https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7d2081c07a6afa338191e68c73e1959f7761b53cf9b691d59926aa0ef89874e5._RI_V_TTW_.jpg"/>
+            <column name="languageid" value="3"/>
+            <column name="genreid" value="5"/>
+            <column name="director" value="Francis Ford Coppola"/>
+            <column name="actors" value="{Marlon Brando,Al Pacino,James Caan}"/>
+            <column name="createdby" value="system"/>
+            <column name="createdat" value="now()"/>
+            <column name="modifiedby" value="system"/>
+            <column name="modifiedat" value="now()"/>
+        </insert>
     </changeSet>
 
     <changeSet id="insert_movie_3" author="Víctor HM">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM movie WHERE title = 'El caballero oscuro');</sqlCheck>
         </preConditions>
-<!--&lt;!&ndash;            <column name="languages">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="genres">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="directors">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="actors">true</column>&ndash;&gt;-->
-        <sql dbms="postgresql">
-            INSERT INTO public.movie (title, originaltitle, year, image,
---                                       languages,genres,directors,actors,
-                                      createdby, createdat, modifiedby, modifiedat)
-            VALUES ('El caballero oscuro', 'The Dark Knight', '2008',
-                    'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg',
-                    'system', now(), 'system', now());
-        </sql>
+
+        <insert tableName="movie">
+            <column name="title" value="El caballero oscuro"/>
+            <column name="originaltitle" value="The Dark Knight"/>
+            <column name="year" value="2008"/>
+            <column name="image" value="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg"/>
+            <column name="languageid" value="5"/>
+            <column name="genreid" value="1"/>
+            <column name="director" value="Christopher Nolan"/>
+            <column name="actors" value="{Christian Bale,Heath Ledger,Aaron Eckhart}"/>
+            <column name="createdby" value="system"/>
+            <column name="createdat" value="now()"/>
+            <column name="modifiedby" value="system"/>
+            <column name="modifiedat" value="now()"/>
+        </insert>
     </changeSet>
 
     <changeSet id="insert_movie_4" author="Víctor HM">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM movie WHERE title = 'La lista de Schindler');</sqlCheck>
         </preConditions>
-<!--&lt;!&ndash;            <column name="languages">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="genres">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="directors">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="actors">true</column>&ndash;&gt;-->
-        <sql dbms="postgresql">
-            INSERT INTO public.movie (title, originaltitle, year, image,
---                                       languages,genres,directors,actors,
-                                      createdby, createdat, modifiedby, modifiedat)
-            VALUES ('La lista de Schindler', 'Schindler''s List', '1993',
-                    'https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg',
-                    'system', now(), 'system', now());
-        </sql>
+
+        <insert tableName="movie">
+            <column name="title" value="La lista de Schindler"/>
+            <column name="originaltitle" value="Schindler's List"/>
+            <column name="year" value="1993"/>
+            <column name="image" value="https://m.media-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"/>
+            <column name="languageid" value="2"/>
+            <column name="genreid" value="7"/>
+            <column name="director" value="Steven Spielberg"/>
+            <column name="actors" value="{Liam Neeson,Ralph Fiennes,Ben Kingsley}"/>
+            <column name="createdby" value="system"/>
+            <column name="createdat" value="now()"/>
+            <column name="modifiedby" value="system"/>
+            <column name="modifiedat" value="now()"/>
+        </insert>
     </changeSet>
 
     <changeSet id="insert_movie_5" author="Víctor HM">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="f">SELECT EXISTS(SELECT 1 FROM movie WHERE title = 'El señor de los anillos: El retorno del rey');</sqlCheck>
         </preConditions>
-<!--&lt;!&ndash;            <column name="languages">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="genres">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="directors">true</column>&ndash;&gt;-->
-<!--&lt;!&ndash;            <column name="actors">true</column>&ndash;&gt;-->
-        <sql dbms="postgresql">
-            INSERT INTO public.movie (title, originaltitle, year, image,
---                                       languages,genres,directors,actors,
-                                      createdby, createdat, modifiedby, modifiedat)
-            VALUES ('El señor de los anillos: El retorno del rey', 'The Lord of the Rings: The Return of the King', '2003',
-                    'https://s3.amazonaws.com/static.rogerebert.com/uploads/movie/movie_poster/lord-of-the-rings-the-return-of-the-king-2003/large_j6NCjU6Zh7SkfIeN5zDaoTmBn4m.jpg',
-                    'system', now(), 'system', now());
-        </sql>
+
+        <insert tableName="movie">
+            <column name="title" value="El señor de los anillos: El retorno del rey"/>
+            <column name="originaltitle" value="The Lord of the Rings: The Return of the King"/>
+            <column name="year" value="2003"/>
+            <column name="image" value="https://s3.amazonaws.com/static.rogerebert.com/uploads/movie/movie_poster/lord-of-the-rings-the-return-of-the-king-2003/large_j6NCjU6Zh7SkfIeN5zDaoTmBn4m.jpg"/>
+            <column name="languageid" value="7"/>
+            <column name="genreid" value="2"/>
+            <column name="director" value="Peter Jackson"/>
+            <column name="actors" value="{Elijah Wood,Viggo Mortensen,Ian McKellen}"/>
+            <column name="createdby" value="system"/>
+            <column name="createdat" value="now()"/>
+            <column name="modifiedby" value="system"/>
+            <column name="modifiedat" value="now()"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
