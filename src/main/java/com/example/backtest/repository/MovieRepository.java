@@ -21,7 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     @Query(nativeQuery = true,
             value = "SELECT * FROM movie WHERE (:title IS NULL OR title ILIKE CONCAT('%', :title, '%')) AND :maxResults >= 0",
-            countQuery = "SELECT count(*) FROM movie WHERE (:title IS NULL OR title ILIKE CONCAT('%', :title, '%')) LIMIT :maxResults"
+            countQuery = "SELECT COUNT(*) FROM (SELECT movieid FROM movie WHERE (:title IS NULL OR title ILIKE CONCAT('%', :title, '%')) LIMIT :maxResults) t;"
     )
     Page<Movie> list(String title, Pageable pageable, Integer maxResults);
 }
