@@ -70,7 +70,7 @@ public class LanguageServiceImpl implements LanguageService {
             throw new Exception("Language cannot be null");
         }
         if (language.getName() == null) {
-            throw new Exception("Title cannot be null");
+            throw new Exception("Name cannot be null");
         }
     }
 }

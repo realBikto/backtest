@@ -8,6 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -47,11 +50,11 @@ public class MovieServiceTest {
     public void GivenUnexistingMovieID_WhenGetMovie_ThenReturnsErrorMessage() {
         // Given
         final Long movieid = -2L;
-        // When + Then
         try {
             // When
             this.movieService.get(movieid);
         } catch (Exception e) {
+            // Then
             assertThat(e.getMessage(), is("Movie -2 not found."));
         }
     }
@@ -84,7 +87,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void GivenNonExistingMovieObject_WhenCreateMovie_ThenCreatesAndReturnsMovie() throws Exception {
+    public void GivenNonExistingMovieObject_WhenCreateMovie_ThenCreatesMovie() throws Exception {
         // Given
         Language language = new Language();
         language.setLanguageid(1L);
@@ -120,7 +123,6 @@ public class MovieServiceTest {
         Movie movie = new Movie();
         movie.setTitle("El padrino");
 
-        final Movie moviedb;
         try {
             // When
             this.movieService.create(movie);
@@ -281,4 +283,54 @@ public class MovieServiceTest {
         }
     }
 
+    @Test
+    public void GivenPageableButNoTitle_WhenListPage_ReturnsPageMovies(){
+        // Given
+        final Pageable pageable = PageRequest.of(0, 2);
+
+        final Integer expectedSize = 2;
+        final Integer expectedPages = 2;
+
+        // When
+        final Page page = this.movieService.list(null,pageable);
+
+        // Then
+        assertThat(page.getSize(), is(equalTo(expectedSize)));
+        assertThat(page.getTotalPages(), is(equalTo(expectedPages)));
+    }
+
+    @Test
+    public void GivenPageableAndTitle_WhenListPage_ReturnsPageMovies() throws Exception {
+        // Given
+        final Pageable pageable = PageRequest.of(0, 2);
+        final String filterTitle = "el señor";
+
+        final Integer expectedSize = 2;
+        final Integer expectedPages = 1;
+        final Movie expectedMovie = this.movieService.get(5L);
+
+        // When
+        final Page page = this.movieService.list(filterTitle,pageable);
+
+        final Object test = page.getContent().get(0);
+        // Then
+        assertThat(page.getSize(), is(equalTo(expectedSize)));
+        assertThat(page.getTotalPages(), is(equalTo(expectedPages)));
+        assertThat(page.getContent().get(0).getClass(), is(equalTo(expectedMovie.getClass())));
+    }
+
+    @Test
+    public void GivenNoPageableAndNoTitle_WhenListPage_ThenReturnsAllMoviesInOnePage(){
+        // Given
+
+        final Integer expectedSize = 4;
+        final Integer expectedPages = 1;
+
+        // When
+        final Page page = this.movieService.list(null,null);
+
+        // Then
+        assertThat(page.getSize(), is(equalTo(expectedSize)));
+        assertThat(page.getTotalPages(), is(equalTo(expectedPages)));
+    }
 }
