@@ -51,11 +51,15 @@ public class MovieRepositoryTest {
         final String title = "El señor";
         final Pageable pageable = PageRequest.of(0, 4);
         final Integer maxResults = 100;
+
+        final Long expectedElements = 1L;
+
         // When
         final Page page = this.movieRepository.list(title,pageable,maxResults);
+
         // Then
         assertThat(page, is(not(nullValue())));
-        assertThat(page.getTotalElements(), is(equalTo(1L)));
+        assertThat(page.getTotalElements(), is(equalTo(expectedElements)));
     }
 
     @Test
@@ -64,8 +68,10 @@ public class MovieRepositoryTest {
         final String title = "La madrina";
         final Pageable pageable = PageRequest.of(0, 4);
         final Integer maxResults = 100;
+
         // When
         final Page page = this.movieRepository.list(title,pageable,maxResults);
+
         // Then
         assertThat(page.getContent(), is(emptyList()));
     }
@@ -75,10 +81,14 @@ public class MovieRepositoryTest {
         // Given
         final Pageable pageable = PageRequest.of(0, 4);
         final Integer maxResults = 100;
+
+        final Integer expectedSize = 4;
+
         // When
         final Page page = this.movieRepository.list(null,pageable,maxResults);
+
         // Then
-        assertThat(page.getSize(), is(equalTo(4)));
+        assertThat(page.getSize(), is(equalTo(expectedSize)));
     }
 
     @Test(expected = DataIntegrityViolationException.class)
