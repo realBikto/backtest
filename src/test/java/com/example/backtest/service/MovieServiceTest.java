@@ -312,7 +312,6 @@ public class MovieServiceTest {
         // When
         final Page page = this.movieService.list(filterTitle,pageable);
 
-        final Object test = page.getContent().get(0);
         // Then
         assertThat(page.getSize(), is(equalTo(expectedSize)));
         assertThat(page.getTotalPages(), is(equalTo(expectedPages)));

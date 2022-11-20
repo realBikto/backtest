@@ -1,5 +1,6 @@
 package com.example.backtest.controller;
 
+import com.example.backtest.exception.CustomBacktestException;
 import com.example.backtest.model.Movie;
 import com.example.backtest.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,25 +28,25 @@ public class MovieController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{movieid}")
-    public Movie getMovieById(@PathVariable Long movieid) throws Exception {
+    public Movie getMovieById(@PathVariable Long movieid) throws CustomBacktestException {
         return this.movieService.get(movieid);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public Movie createMovie(@RequestBody Movie movie) throws Exception {
+    public Movie createMovie(@RequestBody Movie movie) throws CustomBacktestException {
         return this.movieService.create(movie);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{movieid}")
-    public Movie updateMovieById(@PathVariable Long movieid, @RequestBody Movie movie) throws Exception {
+    public Movie updateMovieById(@PathVariable Long movieid, @RequestBody Movie movie) throws CustomBacktestException {
         return this.movieService.update(movieid, movie);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{movieid}")
-    public void deleteMovieById(@PathVariable Long movieid) throws Exception {
+    public void deleteMovieById(@PathVariable Long movieid) throws CustomBacktestException {
         this.movieService.delete(movieid);
     }
 
