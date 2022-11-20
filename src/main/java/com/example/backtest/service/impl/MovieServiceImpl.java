@@ -1,6 +1,5 @@
 package com.example.backtest.service.impl;
 
-import com.example.backtest.exception.CustomBacktestException;
 import com.example.backtest.model.Movie;
 import com.example.backtest.repository.MovieRepository;
 import com.example.backtest.service.MovieService;
@@ -23,26 +22,26 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie get(final Long movieid) throws CustomBacktestException {
+    public Movie get(final Long movieid) throws Exception {
         if (movieid == null) {
-            throw new CustomBacktestException("movieid cannot be null", "400");
+            throw new Exception("movieid cannot be null");
         }
-        return this.movieRepository.findById(movieid).orElseThrow(() -> new CustomBacktestException("Movie " + movieid + " not found.", "404"));
+        return this.movieRepository.findById(movieid).orElseThrow(() -> new Exception("Movie " + movieid + " not found."));
     }
 
     @Override
-    public Movie create(final Movie movie) throws CustomBacktestException {
+    public Movie create(final Movie movie) throws Exception {
         MovieServiceImpl.checkMovieFields(movie);
 
         try {
             return this.movieRepository.saveAndFlush(movie);
         } catch (DataIntegrityViolationException exception) {
-            throw new CustomBacktestException("Movie with title '" + movie.getTitle() + "' already exists", "409");
+            throw new Exception("Movie with title '" + movie.getTitle() + "' already exists");
         }
     }
 
     @Override
-    public Movie update(final Long movieid, final Movie movie) throws CustomBacktestException {
+    public Movie update(final Long movieid, final Movie movie) throws Exception {
         MovieServiceImpl.checkMovieFields(movie);
 
         Movie movieDB = this.get(movieid);
@@ -59,14 +58,14 @@ public class MovieServiceImpl implements MovieService {
             movieDB.setModifiedby(movie.getModifiedby());
             return this.movieRepository.saveAndFlush(movieDB);
         } catch (DataIntegrityViolationException exception) {
-            throw new CustomBacktestException("Movie with title " + movie.getTitle() + " already exists", "409");
+            throw new Exception("Movie with title " + movie.getTitle() + " already exists");
         }
     }
 
     @Override
-    public void delete(final Long movieid) throws CustomBacktestException {
+    public void delete(final Long movieid) throws Exception {
         if (movieid == null) {
-            throw new CustomBacktestException("movieid cannot be null", "400");
+            throw new Exception("movieid cannot be null");
         }
         this.movieRepository.deleteById(movieid);
     }
@@ -82,12 +81,12 @@ public class MovieServiceImpl implements MovieService {
         return this.movieRepository.list(title, pageable, maxResults);
     }
 
-    private static void checkMovieFields(Movie movie) throws CustomBacktestException {
+    private static void checkMovieFields(Movie movie) throws Exception {
         if (movie == null) {
-            throw new CustomBacktestException("Movie cannot be null", "400");
+            throw new Exception("Movie cannot be null");
         }
         if (movie.getTitle() == null) {
-            throw new CustomBacktestException("Title cannot be null", "400");
+            throw new Exception("Title cannot be null");
         }
     }
 }

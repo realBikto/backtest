@@ -1,6 +1,5 @@
 package com.example.backtest.service.impl;
 
-import com.example.backtest.exception.CustomBacktestException;
 import com.example.backtest.model.Genre;
 import com.example.backtest.repository.GenreRepository;
 import com.example.backtest.service.GenreService;
@@ -22,26 +21,26 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre get(final Long genreid) throws CustomBacktestException {
+    public Genre get(final Long genreid) throws Exception {
         if (genreid == null) {
-            throw new CustomBacktestException("genreid cannot be null", "400");
+            throw new Exception("genreid cannot be null");
         }
-        return this.genreRepository.findById(genreid).orElseThrow(() -> new CustomBacktestException("Genre " + genreid + " not found.", "404"));
+        return this.genreRepository.findById(genreid).orElseThrow(() -> new Exception("Genre " + genreid + " not found."));
     }
 
     @Override
-    public Genre create(final Genre genre) throws CustomBacktestException {
+    public Genre create(final Genre genre) throws Exception {
         GenreServiceImpl.checkGenreFields(genre);
 
         try {
             return this.genreRepository.saveAndFlush(genre);
         } catch (DataIntegrityViolationException exception) {
-            throw new CustomBacktestException("Genre with name '" + genre.getName() + "' already exists", "409");
+            throw new Exception("Genre with name '" + genre.getName() + "' already exists");
         }
     }
 
     @Override
-    public Genre update(final Long genreid, final Genre genre) throws CustomBacktestException {
+    public Genre update(final Long genreid, final Genre genre) throws Exception {
         GenreServiceImpl.checkGenreFields(genre);
 
         Genre genreDB = this.get(genreid);
@@ -50,14 +49,14 @@ public class GenreServiceImpl implements GenreService {
             genreDB.setName(genre.getName());
             return this.genreRepository.saveAndFlush(genreDB);
         } catch (DataIntegrityViolationException exception) {
-            throw new CustomBacktestException("Genre with name " + genre.getName() + " already exists", "409");
+            throw new Exception("Genre with name " + genre.getName() + " already exists");
         }
     }
 
     @Override
-    public void delete(final Long genreid) throws CustomBacktestException {
+    public void delete(final Long genreid) throws Exception {
         if (genreid == null) {
-            throw new CustomBacktestException("genreid cannot be null", "400");
+            throw new Exception("genreid cannot be null");
         }
         this.genreRepository.deleteById(genreid);
     }
@@ -67,12 +66,12 @@ public class GenreServiceImpl implements GenreService {
         return this.genreRepository.findAll();
     }
 
-    private static void checkGenreFields(Genre genre) throws CustomBacktestException {
+    private static void checkGenreFields(Genre genre) throws Exception {
         if (genre == null) {
-            throw new CustomBacktestException("Genre cannot be null", "400");
+            throw new Exception("Genre cannot be null");
         }
         if (genre.getName() == null) {
-            throw new CustomBacktestException("Name cannot be null", "400");
+            throw new Exception("Name cannot be null");
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.backtest.controller;
 
-import com.example.backtest.exception.CustomBacktestException;
 import com.example.backtest.model.Language;
 import com.example.backtest.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +23,25 @@ public class LanguageController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{languageid}")
-    public Language getLanguageById(@PathVariable Long languageid) throws CustomBacktestException {
+    public Language getLanguageById(@PathVariable Long languageid) throws Exception {
         return this.languageService.get(languageid);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public Language createLanguage(@RequestBody Language language) throws CustomBacktestException {
+    public Language createLanguage(@RequestBody Language language) throws Exception {
         return this.languageService.create(language);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{languageid}")
-    public Language updateLanguageById(@PathVariable Long languageid, @RequestBody Language language) throws CustomBacktestException {
+    public Language updateLanguageById(@PathVariable Long languageid, @RequestBody Language language) throws Exception {
         return this.languageService.update(languageid, language);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{languageid}")
-    public void deleteLanguageById(@PathVariable Long languageid) throws CustomBacktestException {
+    public void deleteLanguageById(@PathVariable Long languageid) throws Exception {
         this.languageService.delete(languageid);
     }
 }
